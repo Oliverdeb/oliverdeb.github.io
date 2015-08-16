@@ -1,3 +1,5 @@
+http://www.emanueleferonato.com/2014/08/28/phaser-tutorial-understanding-phaser-states/
+
 # Redo sound for moving forward with same concept as space for shooting/ look for permanent solution. - > causing lag?
 
 # Scaling of asteroids + more sprite objects
@@ -18,3 +20,21 @@
 
 # Scrolling:
 http://phaser.io/docs/2.4.2/Phaser.TilemapLayer.html
+http://phaser.io/news/2015/07/kinetic-scrolling-plugin
+for text or sprite assigning to centre of screen when have scroll:
+txt = this.game.add.text(game.camera.width / 2, game.camera.height / 2, "Test",
+
+#Rezise scaling for different res/screen size:
+http://phaser.io/docs/2.4.2/Phaser.ScaleManager.html#scaleMode
+##	this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+
+<!-->
+	<script src = "scripts/difficulty.js"></script>
+	<script src = "scripts/main.js"></script>
+	<script src = "scripts/create.js"></script>
+	<script src = "scripts/asteroids.js"></script>
+	<button onclick="init()">Play!</button>
+	<script src = "scripts/gameobj.js"></script>
+	<script src = "scripts/collision.js"></script>
+	<script src = "scripts/powerups.js"></script>
+	<!-->

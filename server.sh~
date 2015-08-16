@@ -1,2 +1,0 @@
-#!/bin/sh
-python SimpleHTTPServer -m 8080
