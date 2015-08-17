@@ -5,28 +5,27 @@ startState = {
 		player.anchor.setTo(0.5, 0.5);
 		player.scale.setTo(0.6);
 		game.physics.arcade.enable(player);
-
 		asteroids = game.add.group();
-
 	},
 
 	update: function(){
 
-	},
+	},	
 
-	if
 	render: function(){
-		game.debug.bodyInfo(player, 32, 32);
-    	game.debug.body(player);
-	    // asteroids.forEach(function(asteroid){
-	    // 	game.debug.body(asteroid)
-	    // }, asteroid);
-	    /*asteroids.forEach(	function(asteroid)	{
-			game.debug.body(asteroid)
-		});
+		if(debugMode){
+			game.debug.bodyInfo(player, 32, 32);
+			game.debug.body(player);
+		    // asteroids.forEach(function(asteroid){
+		    // game.debug.body(asteroid)
+		    // }, asteroid);
+		    /*asteroids.forEach(	function(asteroid)	{
+				game.debug.body(asteroid)
+			});
 
-	    pickups.forEach(function(pickup){
-	        game.debug.body(pickup);
-	    });*/
-	}
+		    pickups.forEach(function(pickup){
+		        game.debug.body(pickup);
+		    });*/
+		}
+	}	
 }

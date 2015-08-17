@@ -15,6 +15,7 @@ var preLoadState = {
 		game.load.image('title', 'assets/title.png');
 		game.load.image('howto', 'assets/howto.png');
 		game.load.image('howtoplay', 'assets/howtoplay.png');
+		game.load.image('debug', 'assets/debug.png');
 
 		//spritesheets
 		game.load.spritesheet('space_ship', 'assets/player.png',100,100,4);
