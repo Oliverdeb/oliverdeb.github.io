@@ -5,7 +5,7 @@ var preLoadState = {
 		loadingBar.anchor.setTo(0.5, 0.5);
 		game.load.setPreloadSprite(loadingBar);
 		var loadingImage = game.add.sprite(game.width/2, game.height/2 - loadingBar.height, 'loadingText');
-		loadingImage.anchor.setTo(0.5, 0.5);
+		loadingImage.anchor.setTo(0.5, 0.5);		
 		//images
 		game.load.image('plus', 'assets/plus.png');	
 		game.load.image('background', 'assets/starBackground.png');
