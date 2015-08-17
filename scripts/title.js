@@ -1,7 +1,6 @@
 titleState = {	
 	create: function(){
-		console.log("switched states");
-		var gameTitle = game.add.button(game.width/2, game.height/2, 'title', this.playClicked, this);
+		var gameTitle = game.add.button(game.width/2, game.height/3, 'title', this.playClicked, this);
 		gameTitle.anchor.setTo(0.5, 0.5);
 		var howTo = game.add.sprite(gameTitle.x, gameTitle.y + gameTitle.height, 'howto');
 		howTo.anchor.set(0.5, 0.5);
@@ -12,7 +11,8 @@ titleState = {
 	},
 
 	playClicked: function(){
-		console.log("clicked");
-		//game.state.start('start')
+		game.state.start('start')
 	}
+
+	
 }
