@@ -1,11 +1,12 @@
 startState = {
 	create: function(){
 		game.add.sprite(0, 0, 'background');
-		player = game.add.sprite(game.width/2, game.height/2, 'space_ship');
+		player    = game.add.sprite(game.width/2, game.height/2, 'space_ship');
 		player.anchor.setTo(0.5, 0.5);
 		player.scale.setTo(0.6);
 		game.physics.arcade.enable(player);
 		asteroids = game.add.group();
+		asteroid.create(max_asteroids);
 	},
 
 	update: function(){
