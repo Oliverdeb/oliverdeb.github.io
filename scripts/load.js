@@ -6,6 +6,7 @@ var preLoadState = {
 		game.load.setPreloadSprite(loadingBar);
 		var loadingImage = game.add.sprite(game.width/2, game.height/2 - loadingBar.height, 'loadingText');
 		loadingImage.anchor.setTo(0.5, 0.5);		
+		
 		//images
 		game.load.image('plus', 'assets/plus.png');	
 		game.load.image('background', 'assets/starBackground.png');
@@ -19,7 +20,6 @@ var preLoadState = {
 
 		//spritesheets
 		game.load.spritesheet('space_ship', 'assets/player.png',100,100,4);
-
 
 		//audio
 		game.load.audio('audio', "assets/sound/rocket.mp3");

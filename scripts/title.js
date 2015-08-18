@@ -1,5 +1,4 @@
-titleState = {	
-	
+titleState = {		
 	create: function(){
 		theme = game.add.sound('theme', 0.5, true);
 		debugMode = false;
