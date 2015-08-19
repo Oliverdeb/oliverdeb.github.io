@@ -32,6 +32,7 @@ collide = {
 	shipBullet: function(player, bullet){
 		bullet.kill();
 		blast.play();
+		theme.pause();
 		gameover = true;
 		time = game.time.now + 2000;
 		player.animations.play('explosion', 20, true);
