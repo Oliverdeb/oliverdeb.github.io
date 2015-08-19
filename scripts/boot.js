@@ -2,8 +2,8 @@ var bootState = {
 	preload: function(){
 		// loading the "loading" images for the next game state, to have 
 		// bars and text.
-		game.load.image("loadingBar", "assets/loadbar.png");
-		game.load.image("loadingText", "assets/loadingText.png");
+		game.load.image("loadingBar", "assets/title/loadbar.png");
+		game.load.image("loadingText", "assets/title/loadingText.png");
 		//load other stuff.
 	},
 

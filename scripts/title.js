@@ -16,12 +16,12 @@ titleState = {
 	},
 
 	playClicked: function(){		
-		game.state.start('start');
+		game.state.start('difficulty');
 	},
 
 	playDebug: function(){
 		debugMode = true;
-		game.state.start('start');
+		game.state.start('difficulty');
 	}
 
 	
