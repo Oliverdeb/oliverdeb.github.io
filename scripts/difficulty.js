@@ -35,14 +35,14 @@ difficultyState = {
 
 	setDifficulty: function(){
 		max_pickups       = 5-difficulty;
-		pickup_bonus_ammo = 5-difficulty;
-		pickup_bonus_life = 300/difficulty;
+		powerup_bonus_ammo = 5-difficulty;
+		powerup_bonus_life = 300/difficulty;
 		max_velocity      = 150+(50*difficulty);
 		max_asteroids     = 6 * difficulty;
-		ammo              = 4 - difficulty;
+		ammo              = 5 - difficulty;
 		max_acceleration  = difficulty;
 		difference        = 0.3 + difficulty/20;
-		if (difficulty == 3) light = 300;
+		if (difficulty > 2) light = 300;
 		else light = 600 - (100 * difficulty);
 	}
 }

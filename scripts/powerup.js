@@ -1,16 +1,14 @@
-//By Oliver De Bruin and Cary Small from UCT
-
 powerup = {
 	createPowerup: function(n){
-		for(int i = 0; i < n; i++){}
-			var xy = asteroidState.checkSpawn();
-			var plusPowerup = pickups.create(xy[0], xy[1], 'plus');
+		for(i = 0; i < n; i++){
+			var xy = asteroid.checkSpawn();
+			var plusPowerup = powerups.create(xy[0], xy[1], 'plus');
 			game.physics.arcade.enable(plusPowerup);
-		}
+		}		
 	},
 
-	respawnDrops: function(sprite){
-		var xy = asteroidState.checkSpawn();
+	respawn: function(sprite){
+		var xy = asteroid.checkSpawn();
 		sprite.x = xy[0];
 		sprite.y = xy[1];
 	}

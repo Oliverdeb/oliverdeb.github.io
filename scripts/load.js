@@ -21,14 +21,14 @@ var preLoadState = {
 		game.load.image('medium', 'assets/buttons/medium_difficulty.png');
 		game.load.image('hard', 'assets/buttons/hard_difficulty.png');
 		game.load.image('insane', 'assets/buttons/insane_difficulty.png');
+		game.load.image('playagain', 'assets/buttons/play_again.png');
 
 		//spritesheets
 		game.load.spritesheet('space_ship', 'assets/ship/player.png',100,100,4);
 
 		//audio
-		game.load.audio('audio', "assets/sound/rocket.mp3");
-		game.load.audio('blast', "assets/sound/blast.mp3");
-		game.load.audio('end', "assets/sound/end.mp3");
+		game.load.audio('rocketSound', "assets/sound/rocket.mp3");
+		game.load.audio('blast', "assets/sound/blast.mp3");		
 		game.load.audio('pew', 'assets/sound/pew.mp3');
 		game.load.audio('theme', 'assets/sound/theme.mp3');
 	},

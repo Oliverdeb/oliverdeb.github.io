@@ -10,8 +10,7 @@ asteroid = {
 		}
 	},
 
-	checkSpawn: function(){
-		light*0.75
+	checkSpawn: function(){		
 		var x = Math.round(Math.random()*game.width)+1;		// the asteroid is not in the rockets vicinity.
 		var y = Math.round(Math.random()*game.height)+1;
 		if (light > 450) bounds = 450;

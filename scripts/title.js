@@ -21,8 +21,7 @@ titleState = {
 
 	playDebug: function(){
 		debugMode = true;
-		difficultyState.setDifficulty(1);
-		game.state.start('start');
+		game.state.start('difficulty');
 	}
 
 	
