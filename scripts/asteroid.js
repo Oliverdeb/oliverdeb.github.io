@@ -1,8 +1,8 @@
-asteroid = {
+asteroid = {	
 	create: function(n){
 		for (var i = 0; i < n; i++) {
 			var xy = this.checkSpawn();
-			if((Math.round(Math.random()*3)+1) == 1)	var asteroid = asteroids.create(xy[0], xy[1], 'asteroid_big');
+			if((Math.round(Math.random()*3)+1) == 1)	var ast = asteroids.create(xy[0], xy[1], 'asteroid_big');
 			else	var ast = asteroids.create(xy[0], xy[1], 'asteroid_small');
 			ast.body.acceleration.set(max_acceleration);	
 			ast.body.setSize(ast.width*0.80, ast.height*0.8, ast.width*0.1, ast.height*0.1);

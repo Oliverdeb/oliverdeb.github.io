@@ -9,7 +9,7 @@ titleState = {
 		gameTitle.anchor.setTo(0.5, 0.5);
 		var howTo        = game.add.sprite(gameTitle.x, gameTitle.y + gameTitle.height, 'howto');
 		howTo.anchor.set(0.5, 0.5);
-		var instructions = game.add.sprite(howTo.x, howTo.y + 2*(howTo.height), 'howtoplay');
+		var instructions = game.add.sprite(howTo.x, howTo.y + howTo.height*2, 'howtoplay');
 		instructions.anchor.set(0.5, 0.5);
 		var enterKey     = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 		enterKey.onDown.addOnce(this.playClicked, this);
@@ -21,7 +21,8 @@ titleState = {
 
 	playDebug: function(){
 		debugMode = true;
-		game.state.start('difficulty');
+		difficultyState.setDifficulty(1);
+		game.state.start('start');
 	}
 
 	
