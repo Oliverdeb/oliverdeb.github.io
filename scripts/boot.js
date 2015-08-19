@@ -4,7 +4,7 @@ var bootState = {
 		// bars and text.
 		gameover          = false;
 		render            = true;
-		debug             = false;
+		debugMode         = false;
 		drag              = 50;
 		bulletTime        = 0;	
 		keyboard_down     = false;
@@ -18,6 +18,8 @@ var bootState = {
 		max_acceleration  = 0;
 		difference        = 0;
 		light             = 0;
+
+		
 		game.load.image("loadingBar", "assets/title/loadbar.png");
 		game.load.image("loadingText", "assets/title/loadingText.png");
 		//load other stuff.
