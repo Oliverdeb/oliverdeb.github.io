@@ -43,6 +43,8 @@ startState = {
 			lightSprite.blendMode      = Phaser.blendModes.MULTIPLY;		
 		}			
 		fpsMeter = game.add.text(0, 0, "FPS:" + game.time.fps, {font: '32px Arial', fill: '#fff'});
+
+		ammoCounter = game.add.text(fpsMeter.x, fpsMeter.y + fpsMeter.height, 'Ammo:' + ammo, {font: '32px Arial', fill: '#fff'});
 	},
 
 	update: function(){
@@ -51,7 +53,7 @@ startState = {
 				light -= difference;	
 				this.updateShadowTexture(light);	
 			}					
-			this.updateFPS();
+			this.updateText();
 			if(light < 5){
 				gameover = true;				
 				time = game.time.now + 2000;
@@ -145,8 +147,7 @@ startState = {
 		if(sprite.y > game.height) sprite.y = 0;
 		else if(sprite.y < 0) sprite.y = game.height;
 	},
-
-	fire: function(){			
+	fire: function(){	
 		if (game.time.now > bulletTime) {
         	bullet = bullets.getFirstExists(false);
 	        if (bullet) {
@@ -165,7 +166,8 @@ startState = {
 		return ammo > 0 ? true: false;
 	},
 
-	updateFPS: function(){
+	updateText: function(){
 		fpsMeter.setText("FPS:" + game.time.fps);
+		ammoCounter.setText('Ammo:' + ammo);
 	}
 }
