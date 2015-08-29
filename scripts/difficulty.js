@@ -1,13 +1,52 @@
-difficultyState = {
+var difficultyState = {
+	selectedButton: 0,
+	easyButton: null,
+	mediumButton: null,
+	hardButton: null,
+	insaneButton: null,
+	scaleDown: false,
+	difficultyButtons: null,
+
 	create: function(){
-		var easyButton = game.add.button(game.width/2, game.height/3.4, 'easy', this.easySelected, this);
-		var mediumButton = game.add.button(game.width/2, easyButton.y + easyButton.height*2, 'medium', this.mediumSelected, this);
-		var hardButton = game.add.button(game.width/2, mediumButton.y + mediumButton.height*2, 'hard', this.hardSelected, this);
-		var insaneButton = game.add.button(game.width/2, hardButton.y + hardButton.height*2, 'insane', this.insaneSelected, this);
-		easyButton.anchor.setTo(0.5, 0.5);
-		mediumButton.anchor.setTo(0.5, 0.5);
-		hardButton.anchor.setTo(0.5, 0.5);
-		insaneButton.anchor.setTo(0.5, 0.5);
+		difficultyButtons = [
+			game.add.button(game.width/2, game.height/3.4, 'easy', this.easySelected, this)
+		];
+	  	difficultyButtons.push(game.add.button(game.width/2, difficultyButtons[0].y + difficultyButtons[0].height*2, 'medium', this.mediumSelected, this));
+		difficultyButtons.push(game.add.button(game.width/2, difficultyButtons[1].y + difficultyButtons[1].height*2, 'hard', this.hardSelected, this));
+		difficultyButtons.push(game.add.button(game.width/2, difficultyButtons[2].y + difficultyButtons[2].height*2, 'insane', this.insaneSelected, this));
+		
+		for (var i in difficultyButtons){			
+			difficultyButtons[i].anchor.setTo(0.5, 0.5);
+		};
+		enterKeyPressed = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+		difficultyUpSelection = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+		difficultyDownSelection = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+		enterKeyPressed.onDown.add(this.enterPressed, this);
+		difficultyUpSelection.onDown.add(this.upPressed, this);
+		difficultyDownSelection.onDown.add(this.downPressed, this);
+	},
+
+	enterPressed: function(){
+		difficulty = this.selectedButton + 1;
+	},
+
+	upPressed: function(){
+		if(this.selectedButton > 0){
+			this.reset(difficultyButtons[this.selectedButton]);
+			this.selectedButton--;
+		}
+	},
+
+	downPressed: function(){
+		if(this.selectedButton < 3) {
+			this.reset(difficultyButtons[this.selectedButton]);
+			this.selectedButton++;
+		}
+	},
+
+	reset: function(button){
+		button.scale.x = 1;
+		button.scale.y = 1;
 	},
 
 	easySelected: function(){
@@ -30,6 +69,16 @@ difficultyState = {
 		if(difficulty > 0){
 			this.setDifficulty();
 			game.state.start('start');
+		}
+
+		if(this.scaleDown){
+			difficultyButtons[this.selectedButton].scale.x -= 0.01;
+			difficultyButtons[this.selectedButton].scale.y -= 0.01;
+			if(difficultyButtons[this.selectedButton].scale.x < 1) this.scaleDown = false;
+		}else{
+			difficultyButtons[this.selectedButton].scale.x += 0.01;
+			difficultyButtons[this.selectedButton].scale.y += 0.01;
+			if(difficultyButtons[this.selectedButton].scale.x > 1.3) this.scaleDown = true;
 		}
 	},
 
