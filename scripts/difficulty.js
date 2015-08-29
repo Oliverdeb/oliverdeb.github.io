@@ -9,11 +9,13 @@ var difficultyState = {
 
 	create: function(){
 		difficultyButtons = [
-			game.add.button(game.width/2, game.height/3.4, 'easy', this.easySelected, this)
+			game.add.button(game.width/2, game.height/5, 'easy', this.easySelected, this)
 		];
 	  	difficultyButtons.push(game.add.button(game.width/2, difficultyButtons[0].y + difficultyButtons[0].height*2, 'medium', this.mediumSelected, this));
 		difficultyButtons.push(game.add.button(game.width/2, difficultyButtons[1].y + difficultyButtons[1].height*2, 'hard', this.hardSelected, this));
 		difficultyButtons.push(game.add.button(game.width/2, difficultyButtons[2].y + difficultyButtons[2].height*2, 'insane', this.insaneSelected, this));
+		difficultyButtons.push(game.add.button(game.width/2, difficultyButtons[3].y + difficultyButtons[3].height*2, 'backButton', this.backSelected, this));
+
 		
 		for (var i in difficultyButtons){			
 			difficultyButtons[i].anchor.setTo(0.5, 0.5);
@@ -26,7 +28,8 @@ var difficultyState = {
 		difficultyDownSelection.onDown.add(this.downPressed, this);
 	},
 
-	enterPressed: function(){
+	enterPressed: function(test){
+		console.log(test);
 		difficulty = this.selectedButton + 1;
 	},
 
@@ -38,7 +41,7 @@ var difficultyState = {
 	},
 
 	downPressed: function(){
-		if(this.selectedButton < 3) {
+		if(this.selectedButton < 4) {
 			this.reset(difficultyButtons[this.selectedButton]);
 			this.selectedButton++;
 		}
@@ -65,10 +68,21 @@ var difficultyState = {
 		difficulty = 4;
 	},
 
+	backSelected: function(){
+		difficulty = 5;
+	},
+
 	update: function(){
-		if(difficulty > 0){
-			this.setDifficulty();
-			game.state.start('start');
+		if(difficulty > 0){			
+			if(difficulty == 5) {
+				difficulty = 0;
+				game.state.start('title');
+				theme.pause();
+
+			}else{
+				this.setDifficulty();
+				game.state.start('start');
+			}
 		}
 
 		if(this.scaleDown){

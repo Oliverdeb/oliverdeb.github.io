@@ -22,6 +22,7 @@ var preLoadState = {
 		game.load.image('hard', 'assets/buttons/hard_difficulty.png');
 		game.load.image('insane', 'assets/buttons/insane_difficulty.png');
 		game.load.image('playagain', 'assets/buttons/play_again.png');
+		game.load.image('backButton', 'assets/buttons/back.png');
 
 		//spritesheets
 		game.load.spritesheet('space_ship', 'assets/ship/player.png',100,100,4);
