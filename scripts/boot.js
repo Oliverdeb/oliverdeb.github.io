@@ -1,9 +1,9 @@
 var bootState = {
 	preload: function(){
 		// loading the "loading" images for the next game state, to have 
-		// bars and text.		
-		this.defaultValues();
-		
+		// bars and text.			
+		soundMuted         = false;
+		this.defaultValues();		
 		game.load.image("loadingBar", "assets/title/loadbar.png");
 		game.load.image("loadingText", "assets/title/loadingText.png");
 		//load other stuff.
@@ -37,6 +37,7 @@ var bootState = {
 		light              = 0;
 		max_light          = game.width;
 		score              = 0;
-		lastBulletTime = 0;
+		lastBulletTime     = 0;
+		fontStyle          = {font: '32px Arial', fill: '#fff'};
 	}
 };

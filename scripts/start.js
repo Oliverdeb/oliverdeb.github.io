@@ -1,10 +1,7 @@
 startState = {
 	create: function(){
-		game.time.advancedTiming = true;
-		rocketSound = game.add.sound('rocketSound', 0.5, true);
-		blast = game.add.sound('blast');
-		pew = game.add.sound('pew', 0.6);
-		rocketSound.play();
+		if(!soundMuted) this.init_sound();		
+		game.time.advancedTiming = true;		
 		game.add.sprite(0, 0, 'background');
 
 		player    = game.add.sprite(game.width/2, game.height/2, 'space_ship');
@@ -42,9 +39,12 @@ startState = {
 			lightSprite                = game.add.image(0,0,game.shadowTexture);
 			lightSprite.blendMode      = Phaser.blendModes.MULTIPLY;		
 		}			
-		fpsMeter = game.add.text(0, 0, "FPS:" + game.time.fps, {font: '32px Arial', fill: '#fff'});
-
-		ammoCounter = game.add.text(fpsMeter.x, fpsMeter.y + fpsMeter.height, 'Ammo:' + ammo, {font: '32px Arial', fill: '#fff'});
+		if(debugMode)	{
+			fpsMeter = game.add.text(0, game.height, "FPS:" + game.time.fps, fontStyle);
+			fpsMeter.anchor.setTo(0, 1);
+		}
+		ammoCounter = game.add.text(0, 0, 'Ammo:' + ammo, fontStyle);
+		scoreCounter = game.add.text(ammoCounter.x, ammoCounter.y + ammoCounter.height, 'Score: ' + score, fontStyle);
 	},
 
 	update: function(){
@@ -62,10 +62,10 @@ startState = {
 
 			if(cursors.up.isDown){
 				player.animations.play('walk', 20, true);
-		    	rocketSound.resume();    	
+		    	if(!soundMuted) rocketSound.resume();    	
 		        game.physics.arcade.accelerationFromRotation(player.rotation, max_velocity, player.body.acceleration);
 			}else{
-				rocketSound.pause();
+				if(!soundMuted) rocketSound.pause();
 				player.animations.play('still', 20, true);
 				player.body.acceleration.set(max_acceleration);
 			}
@@ -95,7 +95,7 @@ startState = {
 
 
 		}else {
-			rocketSound.pause();			
+			if(!soundMuted) rocketSound.pause();			
 			if(game.time.now > time) {				
 				game.state.start('gameOver');
 			}
@@ -105,10 +105,8 @@ startState = {
 	movement: function(){
 		game.renderer.clearBeforeRender  = false;
 		game.renderer.roundPixels        = true;	
-		//game.physics.startSystem(Phaser.Physics.ARCADE);
-		//game.physics.enable(player, Phaser.Physics.ARCADE);	
 		player.body.drag.set(drag);
-		player.body.maxVelocity.set(max_velocity);
+		player.body.maxVelocity.set(max_velocity+(100*difficulty));
 		cursors                          = game.input.keyboard.createCursorKeys();	
 
 	},
@@ -155,7 +153,7 @@ startState = {
 				bullet.lifespan = 2000;
 				bullet.rotation = player.rotation;
 				game.physics.arcade.velocityFromRotation(player.rotation, 400, bullet.body.velocity);
-				pew.play();
+				if(!soundMuted) pew.play();
 				bulletTime      = game.time.now + 50;
 				lastBulletTime      = game.time.now + 500;
         	}
@@ -167,7 +165,14 @@ startState = {
 	},
 
 	updateText: function(){
-		fpsMeter.setText("FPS:" + game.time.fps);
+		if(debugMode)	fpsMeter.setText("FPS:" + game.time.fps);
 		ammoCounter.setText('Ammo:' + ammo);
+	},
+
+	init_sound: function(){
+		rocketSound = game.add.sound('rocketSound', 0.5, true);
+		blast = game.add.sound('blast');
+		pew = game.add.sound('pew', 0.6);
+		rocketSound.play();
 	}
 }
