@@ -1,18 +1,5 @@
 startState = {	
 
-	explodeAnimation: function(){		
-		console.log("running?");
-		player.kill();
-		var explosionAnim = game.add.sprite(player.x, player.y, 'explosion');
-		console.log("running?");
-		explosionAnim.scale.x = 1.5;
-		explosionAnim.scale.y = 1.5;
-		explosionAnim.anchor.setTo(0.5, 0.5);
-		explosionAnim.animations.add('explode');
-		explosionAnim.play('explode', 15, false, true);
-
-	},
-
 	create: function(){
 		if(!soundMuted) this.init_sound();		
 		game.time.advancedTiming = true;		
@@ -21,7 +8,7 @@ startState = {
 		player    = game.add.sprite(game.width/2, game.height/2, 'spaceShip');
 		//player.animations.add('walk', [1, 2],10, true);
 		//player.animations.add('still', [0],10, true);
-		//player.animations.add('explosion', [3],10, true);
+		//player.animations.add('explosion', [3],10, true);s
 		player.anchor.setTo(0.5, 0.5);
 		player.scale.setTo(0.6);
 		game.physics.arcade.enable(player);
@@ -44,6 +31,9 @@ startState = {
 		asteroids = game.add.group();
 		asteroids.enableBody = true;		
 		asteroid.create(max_asteroids);
+
+		spacePressedCapture = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+		spacePressedCapture.onDown.add(this.fire, this);
 		
 
 
@@ -73,10 +63,12 @@ startState = {
 				time = game.time.now + 2000;
 				theme.pause();
 			}
-
 			if(cursors.up.isDown){
 				//player.animations.play('walk', 20, true);
-		    	if(!soundMuted) rocketSound.resume();    	
+		    	if(!soundMuted) {
+		    		rocketSound.resume();   
+		    		if(!rocketSound.isPlaying) rocketSound.play();	
+		    	}
 		        game.physics.arcade.accelerationFromRotation(player.rotation, max_velocity, player.body.acceleration);
 			}else{
 				if(!soundMuted) rocketSound.pause();
@@ -87,24 +79,15 @@ startState = {
 		    else if (cursors.right.isDown)	player.body.angularVelocity = 300;
 		    else	player.body.angularVelocity = 0;
 
-		    if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && !keyboard_down) {	  
-			    if (this.ammo()){
-		    		this.fire();
-		    		keyboard_down = true; 
-		    		ammo--;
-		    	}
-		    }
-		    if(!game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR))  	keyboard_down = false;
-
 		    this.screenWrap(player);
 			powerups.forEachExists(this.screenWrap, this);
 			asteroids.forEachExists(this.screenWrap, this);
 			bullets.forEachExists(this.screenWrap, this);
 
-			if(!debugMode) game.physics.arcade.overlap(player, asteroids, collide.shipAsteroid, null, this);	    
+			if(!debugMode) game.physics.arcade.overlap(player, asteroids, collide.shipAsteroid, null, collide);	    
 			game.physics.arcade.overlap(player, powerups, collide.shipPowerup, null, this);	
 			game.physics.arcade.overlap(bullets, asteroids, collide.bulletAsteroid, null, this);
-			if(game.time.now > lastBulletTime) game.physics.arcade.overlap(player, bullets, collide.shipBullet, null, this);
+			if(game.time.now > lastBulletTime) game.physics.arcade.overlap(player, bullets, collide.shipBullet, null, collide);
 			game.physics.arcade.overlap(bullets, powerups, collide.bulletPowerup, null, this);
 
 
@@ -159,7 +142,10 @@ startState = {
 		if(sprite.y > game.height) sprite.y = 0;
 		else if(sprite.y < 0) sprite.y = game.height;
 	},
+
 	fire: function(){	
+		if(!this.ammo()) return;
+		ammo--;
 		if (game.time.now > bulletTime) {
         	bullet = bullets.getFirstExists(false);
 	        if (bullet) {

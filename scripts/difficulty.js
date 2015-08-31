@@ -20,12 +20,15 @@ var difficultyState = {
 		for (var i in difficultyButtons){			
 			difficultyButtons[i].anchor.setTo(0.5, 0.5);
 		};
-		var enterKeyPressed = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-		var difficultyUpSelection = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-		var difficultyDownSelection = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-		enterKeyPressed.onDown.add(this.enterPressed, this);
-		difficultyUpSelection.onDown.add(this.upPressed, this);
-		difficultyDownSelection.onDown.add(this.downPressed, this);
+		var keysPressed = game.input.keyboard.addKeys (
+			{
+				enter: Phaser.Keyboard.ENTER,
+				up: Phaser.Keyboard.UP,
+				down: Phaser.Keyboard.DOWN 
+			});
+		keysPressed.enter.onDown.add(this.enterPressed, this);
+		keysPressed.up.onDown.add(this.upPressed, this);
+		keysPressed.down.onDown.add(this.downPressed, this);
 	},
 
 	enterPressed: function(){

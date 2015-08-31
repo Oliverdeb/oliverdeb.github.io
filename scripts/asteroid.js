@@ -11,11 +11,11 @@ asteroid = {
 	},
 
 	checkSpawn: function(){		
-		var x = Math.round(Math.random()*game.width)+1;		// the asteroid is not in the rockets vicinity.
-		var y = Math.round(Math.random()*game.height)+1;
-		if (light > 450) bounds = 350;
+		var x = game.world.randomX;		
+		var y = game.world.randomY;
+		if (light > 450) bounds = 400;
 		else bounds = light;
-		while (Phaser.Math.distanceRounded(x, y, player.x, player.y) <= bounds*0.75){
+		while (Math.round(Phaser.Math.distance(x, y, player.x, player.y)) <= bounds*0.75){
 			x = Math.round(Math.random()*game.width)+1;
 			y = Math.round(Math.random()*game.height)+1;
 		}

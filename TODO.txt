@@ -1,16 +1,10 @@
 http://www.emanueleferonato.com/2014/08/28/phaser-tutorial-understanding-phaser-states/
 
-# Redo sound for moving forward with same concept as space for shooting/ look for permanent solution. - > causing lag?
-
 # Scaling of asteroids + more sprite objects
-
-# MAX LIGHT 600
 
 # Remove rendering from destroyed obj in debug mode
 
 # Change rotation speed based on difficulty?
-
-# Re do game state and game object initialising / Re do code using OOP practice.
 
 # Powerups etc speed shield - > new sprite shield image in assets
 
@@ -28,13 +22,15 @@ txt = this.game.add.text(game.camera.width / 2, game.camera.height / 2, "Test",
 http://phaser.io/docs/2.4.2/Phaser.ScaleManager.html#scaleMode
 ##	this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
-<!-->
-	<script src = "scripts/difficulty.js"></script>
-	<script src = "scripts/main.js"></script>
-	<script src = "scripts/create.js"></script>
-	<script src = "scripts/asteroids.js"></script>
-	<button onclick="init()">Play!</button>
-	<script src = "scripts/gameobj.js"></script>
-	<script src = "scripts/collision.js"></script>
-	<script src = "scripts/powerups.js"></script>
-	<!-->
+var w = window.innerWidth * window.devicePixelRatio,
+    h = window.innerHeight * window.devicePixelRatio;
+
+
+DOABLE LIST:
+1) New asteroids + scaling of asteroids
+	1.1) make asteroid have custom property splittable, if splittable spawn 4 new asteroids on splittable one being destroyed.
+2) New Powerups - Shield
+				- Speed
+				- Faster shooting?
+3) Two-player on the same keyboard.
+4) Scrolling?

@@ -6,13 +6,7 @@ var collide = {
 			theme.pause();
 			rocketSound.pause();
 		}
-		gameover = true;
-		time = game.time.now + 2000;
-
-		console.log("running?here");
-		startState.explodeAnimation();
-		//player.animations.play('explosion', 20, true);
-		
+		this.explodeAnimation();		
 	},
 
 	shipPowerup: function(){			
@@ -45,8 +39,18 @@ var collide = {
 			theme.pause();
 			rocketSound.pause();
 		}
+		this.explodeAnimation();	
+	},
+
+	explodeAnimation: function(){
 		gameover = true;
-		time = game.time.now + 2000;
-		startState.explodeAnimation();	
+		time = game.time.now + 2000;	
+		player.kill();
+		var explosionAnim = game.add.sprite(player.x, player.y, 'explosion');
+		explosionAnim.scale.x = 1.5;
+		explosionAnim.scale.y = 1.5;
+		explosionAnim.anchor.setTo(0.5, 0.5);
+		explosionAnim.animations.add('explode');
+		explosionAnim.play('explode', 15, false, true);	
 	}
-}
+};
