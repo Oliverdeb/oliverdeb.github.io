@@ -9,7 +9,7 @@ var preLoadState = {
 		
 		//images
 		game.load.image('plus', 'assets/powerups/plus.png');	
-		game.load.image('background', 'assets/starBackground.png');
+		game.load.image('background', 'assets/background.png');
 		game.load.image('asteroid_big', 'assets/meteors/meteorBig.png');
 		game.load.image('asteroid_small', 'assets/meteors/meteorSmall.png');    
 		game.load.image('bullet', 'assets/ship/bullet.png');		
@@ -23,10 +23,12 @@ var preLoadState = {
 		game.load.image('insane', 'assets/buttons/insane_difficulty.png');
 		game.load.image('playagain', 'assets/buttons/play_again.png');
 		game.load.image('backButton', 'assets/buttons/back.png');
+		game.load.image('spaceShip', 'assets/ship/drakir.png');
 
 		//spritesheets
 		game.load.spritesheet('space_ship', 'assets/ship/player.png',100,100,4);
 		game.load.spritesheet('soundEnableDisable', 'assets/buttons/enableSound.png',150,150,2);
+		game.load.spritesheet('explosion', 'assets/ship/explosion.png',64,64, 16);
 
 		//audio
 		game.load.audio('rocketSound', "assets/sound/rocket.mp3");

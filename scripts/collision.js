@@ -1,4 +1,5 @@
-var collide = {
+var collide = {	
+
 	shipAsteroid: function(){
 		if(!soundMuted)	{
 			blast.play();
@@ -7,7 +8,10 @@ var collide = {
 		}
 		gameover = true;
 		time = game.time.now + 2000;
-		player.animations.play('explosion', 20, true);
+
+		console.log("running?here");
+		startState.explodeAnimation();
+		//player.animations.play('explosion', 20, true);
 		
 	},
 
@@ -43,6 +47,6 @@ var collide = {
 		}
 		gameover = true;
 		time = game.time.now + 2000;
-		player.animations.play('explosion', 20, true);		
+		startState.explodeAnimation();	
 	}
 }

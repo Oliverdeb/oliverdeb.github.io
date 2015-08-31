@@ -1,13 +1,27 @@
-startState = {
+startState = {	
+
+	explodeAnimation: function(){		
+		console.log("running?");
+		player.kill();
+		var explosionAnim = game.add.sprite(player.x, player.y, 'explosion');
+		console.log("running?");
+		explosionAnim.scale.x = 1.5;
+		explosionAnim.scale.y = 1.5;
+		explosionAnim.anchor.setTo(0.5, 0.5);
+		explosionAnim.animations.add('explode');
+		explosionAnim.play('explode', 15, false, true);
+
+	},
+
 	create: function(){
 		if(!soundMuted) this.init_sound();		
 		game.time.advancedTiming = true;		
 		game.add.sprite(0, 0, 'background');
 
-		player    = game.add.sprite(game.width/2, game.height/2, 'space_ship');
-		player.animations.add('walk', [1, 2],10, true);
-		player.animations.add('still', [0],10, true);
-		player.animations.add('explosion', [3],10, true);
+		player    = game.add.sprite(game.width/2, game.height/2, 'spaceShip');
+		//player.animations.add('walk', [1, 2],10, true);
+		//player.animations.add('still', [0],10, true);
+		//player.animations.add('explosion', [3],10, true);
 		player.anchor.setTo(0.5, 0.5);
 		player.scale.setTo(0.6);
 		game.physics.arcade.enable(player);
@@ -61,12 +75,12 @@ startState = {
 			}
 
 			if(cursors.up.isDown){
-				player.animations.play('walk', 20, true);
+				//player.animations.play('walk', 20, true);
 		    	if(!soundMuted) rocketSound.resume();    	
 		        game.physics.arcade.accelerationFromRotation(player.rotation, max_velocity, player.body.acceleration);
 			}else{
 				if(!soundMuted) rocketSound.pause();
-				player.animations.play('still', 20, true);
+				//player.animations.play('still', 20, true);
 				player.body.acceleration.set(max_acceleration);
 			}
 			if (cursors.left.isDown)	player.body.angularVelocity = -300;	    
@@ -170,8 +184,8 @@ startState = {
 	},
 
 	init_sound: function(){
-		rocketSound = game.add.sound('rocketSound', 0.5, true);
-		blast = game.add.sound('blast');
+		rocketSound = game.add.sound('rocketSound', 0.3, true);
+		blast = game.add.sound('blast', 0.5);
 		pew = game.add.sound('pew', 0.6);
 		rocketSound.play();
 	}

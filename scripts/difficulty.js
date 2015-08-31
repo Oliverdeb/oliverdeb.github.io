@@ -20,30 +20,33 @@ var difficultyState = {
 		for (var i in difficultyButtons){			
 			difficultyButtons[i].anchor.setTo(0.5, 0.5);
 		};
-		enterKeyPressed = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-		difficultyUpSelection = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-		difficultyDownSelection = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+		var enterKeyPressed = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+		var difficultyUpSelection = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+		var difficultyDownSelection = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
 		enterKeyPressed.onDown.add(this.enterPressed, this);
 		difficultyUpSelection.onDown.add(this.upPressed, this);
 		difficultyDownSelection.onDown.add(this.downPressed, this);
 	},
 
-	enterPressed: function(test){
-		console.log(test);
+	enterPressed: function(){
 		difficulty = this.selectedButton + 1;
 	},
 
 	upPressed: function(){
-		if(this.selectedButton > 0){
-			this.reset(difficultyButtons[this.selectedButton]);
+		this.reset(difficultyButtons[this.selectedButton]);
+		if(this.selectedButton > 0){			
 			this.selectedButton--;
-		}
+		}else {
+			this.selectedButton = 4;
+		}		
 	},
 
 	downPressed: function(){
+		this.reset(difficultyButtons[this.selectedButton]);
 		if(this.selectedButton < 4) {
-			this.reset(difficultyButtons[this.selectedButton]);
 			this.selectedButton++;
+		}else{
+			this.selectedButton = 0;
 		}
 	},
 
@@ -101,7 +104,7 @@ var difficultyState = {
 		powerup_bonus_ammo = 5-difficulty;
 		powerup_bonus_life = 300/difficulty;
 		max_velocity      = 150+(50*difficulty);
-		max_asteroids     = 6 * difficulty;
+		max_asteroids     = 10 * difficulty;
 		ammo              = 5 - difficulty;
 		max_acceleration  = difficulty;
 		difference        = 0.3 + difficulty/20;
