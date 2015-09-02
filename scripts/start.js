@@ -5,10 +5,9 @@ startState = {
 		game.time.advancedTiming = true;		
 		game.add.sprite(0, 0, 'background');
 
-		player    = game.add.sprite(game.width/2, game.height/2, 'spaceShip');
-		//player.animations.add('walk', [1, 2],10, true);
-		//player.animations.add('still', [0],10, true);
-		//player.animations.add('explosion', [3],10, true);s
+		player    = game.add.sprite(game.width/2, game.height/2, 'ship');
+		player.animations.add('idle', [0], 10, false);
+		player.animations.add('fly', [1, 2], 10, true);
 		player.anchor.setTo(0.5, 0.5);
 		player.scale.setTo(0.6);
 		game.physics.arcade.enable(player);
@@ -64,7 +63,7 @@ startState = {
 				theme.pause();
 			}
 			if(cursors.up.isDown){
-				//player.animations.play('walk', 20, true);
+				player.animations.play('fly', 30, true);
 		    	if(!soundMuted) {
 		    		rocketSound.resume();   
 		    		if(!rocketSound.isPlaying) rocketSound.play();	
@@ -72,7 +71,7 @@ startState = {
 		        game.physics.arcade.accelerationFromRotation(player.rotation, max_velocity, player.body.acceleration);
 			}else{
 				if(!soundMuted) rocketSound.pause();
-				//player.animations.play('still', 20, true);
+				player.animations.play('idle', 20, true);
 				player.body.acceleration.set(max_acceleration);
 			}
 			if (cursors.left.isDown)	player.body.angularVelocity = -300;	    
@@ -144,7 +143,7 @@ startState = {
 	},
 
 	fire: function(){	
-		if(!this.ammo()) return;
+		if(!this.ammo() || gameover) return;
 		ammo--;
 		if (game.time.now > bulletTime) {
         	bullet = bullets.getFirstExists(false);

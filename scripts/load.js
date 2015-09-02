@@ -23,10 +23,9 @@ var preLoadState = {
 		game.load.image('insane', 'assets/buttons/insane_difficulty.png');
 		game.load.image('playagain', 'assets/buttons/play_again.png');
 		game.load.image('backButton', 'assets/buttons/back.png');
-		game.load.image('spaceShip', 'assets/ship/drakir.png');
 
 		//spritesheets
-		game.load.spritesheet('space_ship', 'assets/ship/player.png',100,100,4);
+		game.load.spritesheet('ship', 'assets/ship/spaceShipSheet.png',88,78,3);
 		game.load.spritesheet('soundEnableDisable', 'assets/buttons/enableSound.png',150,150,2);
 		game.load.spritesheet('explosion', 'assets/ship/explosion.png',64,64, 16);
 

@@ -23,11 +23,12 @@ http://phaser.io/docs/2.4.2/Phaser.ScaleManager.html#scaleMode
 ##	this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
 var w = window.innerWidth * window.devicePixelRatio,
-    h = window.innerHeight * window.devicePixelRatio;
+    h = window.innerHeight * window.devicePixelRatio;http://www.html5gamedevs.com/topic/1380-how-to-scale-entire-game-up/
 
 
 DOABLE LIST:
 1) New asteroids + scaling of asteroids
+	Instead of creating new on destroy just spawn in a new location.
 	1.1) make asteroid have custom property splittable, if splittable spawn 4 new asteroids on splittable one being destroyed.
 2) New Powerups - Shield
 				- Speed

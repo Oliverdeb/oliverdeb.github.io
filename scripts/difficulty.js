@@ -107,11 +107,11 @@ var difficultyState = {
 		powerup_bonus_ammo = 5-difficulty;
 		powerup_bonus_life = 300/difficulty;
 		max_velocity      = 150+(50*difficulty);
-		max_asteroids     = 10 * difficulty;
+		max_asteroids     = (difficulty * difficulty) + 15
 		ammo              = 5 - difficulty;
 		max_acceleration  = difficulty;
-		difference        = 0.3 + difficulty/20;
-		if (difficulty > 2) light = 300;
-		else light = 600 - (100 * difficulty);
+		difference        = 0.35 + difficulty/40;
+		if (difficulty > 2) light = 400;
+		else light = 500 - (100 * difficulty);
 	}
 }
