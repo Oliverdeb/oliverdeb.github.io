@@ -68,14 +68,14 @@ startState = {
 		    		rocketSound.resume();   
 		    		if(!rocketSound.isPlaying) rocketSound.play();	
 		    	}
-		        game.physics.arcade.accelerationFromRotation(player.rotation, max_velocity, player.body.acceleration);
+		        game.physics.arcade.accelerationFromRotation(player.rotation, player_max_velocity, player.body.acceleration);
 			}else{
 				if(!soundMuted) rocketSound.pause();
 				player.animations.play('idle', 20, true);
 				player.body.acceleration.set(max_acceleration);
 			}
-			if (cursors.left.isDown)	player.body.angularVelocity = -300;	    
-		    else if (cursors.right.isDown)	player.body.angularVelocity = 300;
+			if (cursors.left.isDown)	player.body.angularVelocity = -turnSpeed;	    
+		    else if (cursors.right.isDown)	player.body.angularVelocity = turnSpeed;
 		    else	player.body.angularVelocity = 0;
 
 		    this.screenWrap(player);
@@ -102,7 +102,7 @@ startState = {
 		game.renderer.clearBeforeRender  = false;
 		game.renderer.roundPixels        = true;	
 		player.body.drag.set(drag);
-		player.body.maxVelocity.set(max_velocity+(100*difficulty));
+		player.body.maxVelocity.set(player_max_velocity);
 		cursors                          = game.input.keyboard.createCursorKeys();	
 
 	},

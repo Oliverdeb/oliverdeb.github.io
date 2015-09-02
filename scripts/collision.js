@@ -29,7 +29,7 @@ var collide = {
 	bulletAsteroid: function(bullet, pAsteroid){
 		bullet.kill();
 		pAsteroid.kill();
-		asteroid.create(1);
+		asteroid.reviveAsteroid(pAsteroid);
 	},
 
 	shipBullet: function(player, bullet){

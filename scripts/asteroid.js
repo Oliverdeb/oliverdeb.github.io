@@ -11,7 +11,7 @@ asteroid = {
 	},
 
 	checkSpawn: function(){		
-		var x = game.world.randomX;		
+		var x = game.world.randomX;
 		var y = game.world.randomY;
 		if (light > 450) bounds = 400;
 		else bounds = light;
@@ -20,5 +20,11 @@ asteroid = {
 			y = game.world.randomY;
 		}
 		return [x, y];
+	},
+
+	reviveAsteroid: function(asteroidObj){
+		var xy = this.checkSpawn();
+		asteroidObj.x = xy[0];
+		asteroidObj.y = xy[1];
 	}
 }
