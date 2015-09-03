@@ -10,8 +10,6 @@ var preLoadState = {
 		//images
 		game.load.image('plus', 'assets/powerups/plus.png');	
 		game.load.image('background', 'assets/background.png');
-		game.load.image('asteroid_big', 'assets/meteors/1.png');
-		game.load.image('asteroid_small', 'assets/meteors/2.png');    
 		game.load.image('bullet', 'assets/ship/bullet.png');		
 		game.load.image('title', 'assets/buttons/title.png');
 		game.load.image('howto', 'assets/title/howto.png');
@@ -28,6 +26,7 @@ var preLoadState = {
 		game.load.spritesheet('ship', 'assets/ship/spaceShipSheet.png',88,78,3);
 		game.load.spritesheet('soundEnableDisable', 'assets/buttons/enableSound.png',150,150,2);
 		game.load.spritesheet('explosion', 'assets/ship/explosion.png',64,64, 16);
+		game.load.atlasJSONHash('asteroids', 'assets/asteroids/asteroids.png', 'assets/asteroids/asteroids.json');
 
 		//audio
 		game.load.audio('rocketSound', "assets/sound/rocket.mp3");

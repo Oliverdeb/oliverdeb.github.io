@@ -5,12 +5,13 @@ startState = {
 		game.time.advancedTiming = true;		
 		game.add.sprite(0, 0, 'background');
 
-		player    = game.add.sprite(game.width/2, game.height/2, 'ship');
-		player.animations.add('idle', [0], 10, false);
-		player.animations.add('fly', [1, 2], 10, true);
-		player.anchor.setTo(0.5, 0.5);
-		player.scale.setTo(0.6);
+		player    = game.add.sprite(game.width/2, game.height/2, 'ship');		
 		game.physics.arcade.enable(player);
+		player.animations.add('idle', [0], 10, false);
+		player.animations.add('fly', [1, 2], 10, true);	
+		player.body.setSize(player.width * .7, player.height * 0.9, player.width * .05, 0);		
+		player.anchor.setTo(0.5, 0.5);	
+		player.scale.setTo(0.6);
 
 		this.movement();
 
@@ -29,6 +30,7 @@ startState = {
 
 		asteroids = game.add.group();
 		asteroids.enableBody = true;		
+		asteroid.populateAnimationArray();
 		asteroid.create(max_asteroids);
 
 		spacePressedCapture = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
@@ -47,7 +49,8 @@ startState = {
 			fpsMeter.anchor.setTo(0, 1);
 		}
 		ammoCounter = game.add.text(0, 0, 'Ammo:' + ammo, fontStyle);
-		scoreCounter = game.add.text(ammoCounter.x, ammoCounter.y + ammoCounter.height, 'Score: ' + score, fontStyle);
+		scoreCounter = game.add.text(ammoCounter.x, ammoCounter.y + ammoCounter.height, 'Score: ' + score, fontStyle);		
+		asteroidAnimationTimer = game.time.now + timeBetweenAnimationUpdates;
 	},
 
 	update: function(){
@@ -90,12 +93,23 @@ startState = {
 			game.physics.arcade.overlap(bullets, powerups, collide.bulletPowerup, null, this);
 
 
-		}else {
+		}else {			
 			if(!soundMuted) rocketSound.pause();			
 			if(game.time.now > time) {				
 				game.state.start('gameOver');
 			}
 		}
+		if(game.time.now > asteroidAnimationTimer) this.updateAnimations();
+	},	
+
+	updateAnimations: function(){
+		if(amountOfAnimationUpdates > animationSpeedThreshold) return;
+		asteroidAnimationTimer = game.time.now + timeBetweenAnimationUpdates;
+		amountOfAnimationUpdates++;
+		asteroids.forEachExists(function(asteroidObj){
+			asteroidObj.animations.stop();
+			asteroidObj.animations.play('rotate', 5 + amountOfAnimationUpdates, true, false);
+		}, this);
 	},	
 
 	movement: function(){
@@ -120,11 +134,12 @@ startState = {
 
 	render: function(){
 		if(debugMode){
-			game.debug.bodyInfo(player, 32, 32);
+			//game.debug.bodyInfo(player, 32, 32);
 			game.debug.body(player);
 		    asteroids.forEach(	
 		    	function(asteroid){
-		     		game.debug.body(asteroid)
+		     		game.debug.body(asteroid);
+		     		game.debug.bodyInfo(asteroid, 32, 32);
 		     },
 		     asteroid);
 
@@ -173,5 +188,6 @@ startState = {
 		blast = game.add.sound('blast', 0.5);
 		pew = game.add.sound('pew', 0.6);
 		rocketSound.play();
+		rocketSound.pause();
 	}
 }

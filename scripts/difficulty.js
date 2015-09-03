@@ -103,17 +103,19 @@ var difficultyState = {
 	},
 
 	setDifficulty: function(){
-		turnSpeed                 = 200 +  20*difficulty;
-		max_pickups               = 5-difficulty;
-		powerup_bonus_ammo        = 5-difficulty;
-		powerup_bonus_life        = 300/difficulty;
-		max_velocity              = 80*difficulty;		
-		player_max_velocity       = max_velocity+(20*difficulty);
-		max_asteroids             = (difficulty * difficulty) + 15
-		ammo                      = 5 - difficulty;
-		max_acceleration          = difficulty;
-		difference                = 0.35 + difficulty/40;
-		if (difficulty > 2) light = 400;
-		else light                = 500 - (100 * difficulty);
+		animationSpeedThreshold     = 3 + (difficulty * 1.5);
+		timeBetweenAnimationUpdates = 5000 + (6000 - difficulty * 1000);
+		turnSpeed                   = 200 +  20 * difficulty;
+		max_pickups                 = 5 - difficulty;
+		powerup_bonus_ammo          = 5 - difficulty;
+		powerup_bonus_life          = 300 / difficulty;
+		max_velocity                = 80 * difficulty + 50;		
+		player_max_velocity         = max_velocity + (20 * difficulty);
+		max_asteroids               = (difficulty * difficulty) + 15
+		ammo                        = 5 - difficulty;
+		max_acceleration            = difficulty + 1;
+		difference                  = 0.35 + difficulty/40;
+		if (difficulty > 2) light   = 400;
+		else light                  = 500 - (100 * difficulty);
 	}
 }
