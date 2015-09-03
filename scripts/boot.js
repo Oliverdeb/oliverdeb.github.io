@@ -20,25 +20,24 @@ var bootState = {
 
 	defaultValues: function(){
 		amountOfAnimationUpdates = 0;
-		gameover               = false;
-		render                 = true;
-		debugMode              = false;
-		drag                   = 50;
-		bulletTime             = 0;	
-		keyboard_down          = false;
-		difficulty             = -1;
-		max_pickups            = 0;
-		powerup_bonus_ammo     = 0;
-		powerup_bonus_life     = 0;
-		max_velocity           = 0;
-		max_asteroids          = 0;
-		ammo                   = 0;
-		max_acceleration       = 0;
-		difference             = 0;
-		light                  = 0;
-		max_light              = game.width;
-		score                  = 0;
-		lastBulletTime         = 0;
-		fontStyle              = {font: '32px Arial', fill: '#fff'};
+		gameover                 = false;
+		render                   = true;
+		debugMode                = false;
+		drag                     = 50;
+		bulletTime               = 0;	
+		difficulty               = -1;
+		max_pickups              = 0;
+		powerup_bonus_ammo       = 0;
+		powerup_bonus_life       = 0;
+		max_velocity             = 0;
+		max_asteroids            = 0;
+		ammo                     = 0;
+		max_acceleration         = 0;
+		circleDecreaseAmt        = 0;
+		circleRadius                    = 0;
+		max_circleRadius                = game.width;
+		score                    = 0;
+		lastBulletTime           = 0;
+		fontStyle                = {font: '32px Arial', fill: '#fff'};
 	}
 };

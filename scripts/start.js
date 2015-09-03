@@ -38,11 +38,11 @@ startState = {
 		
 
 
-		if(!debugMode){							//Create light/Shadow texture
+		if(!debugMode){							
 			game.stage.backgroundColor = 0x4488cc;
 			game.shadowTexture         = game.add.bitmapData(game.width,game.height);
-			lightSprite                = game.add.image(0,0,game.shadowTexture);
-			lightSprite.blendMode      = Phaser.blendModes.MULTIPLY;		
+			circleRadiusSprite                = game.add.image(0,0,game.shadowTexture);
+			circleRadiusSprite.blendMode      = Phaser.blendModes.MULTIPLY;		
 		}			
 		if(debugMode)	{
 			fpsMeter = game.add.text(0, game.height, "FPS:" + game.time.fps, fontStyle);
@@ -56,11 +56,11 @@ startState = {
 	update: function(){
 		if(gameover == false){
 			if(!debugMode){
-				light -= difference;	
-				this.updateShadowTexture(light);	
+				circleRadius -= circleDecreaseAmt;	
+				this.updateShadowTexture(circleRadius);	
 			}					
 			this.updateText();
-			if(light < 5){
+			if(circleRadius < 5){
 				gameover = true;				
 				time = game.time.now + 2000;
 				theme.pause();
@@ -99,11 +99,10 @@ startState = {
 				game.state.start('gameOver');
 			}
 		}
-		if(game.time.now > asteroidAnimationTimer) this.updateAnimations();
+		if(amountOfAnimationUpdates < animationSpeedThreshold && game.time.now > asteroidAnimationTimer) this.updateAnimations();
 	},	
 
 	updateAnimations: function(){
-		if(amountOfAnimationUpdates > animationSpeedThreshold) return;
 		asteroidAnimationTimer = game.time.now + timeBetweenAnimationUpdates;
 		amountOfAnimationUpdates++;
 		asteroids.forEachExists(function(asteroidObj){
@@ -122,24 +121,23 @@ startState = {
 	},
 
 	updateShadowTexture: function(radius){				
-		game.LIGHT_RADIUS                    = radius;	
+		game.circleRadius_RADIUS                    = radius;	
 		game.shadowTexture.context.fillStyle = 'rgb(0,0,0)';
 		game.shadowTexture.context.fillRect(0, 0, game.width, game.height);
 		game.shadowTexture.context.beginPath();
 		game.shadowTexture.context.fillStyle = 'rgb(255,255,255)';
-		game.shadowTexture.context.arc(player.x, player.y, game.LIGHT_RADIUS, 0, Math.PI*2);
+		game.shadowTexture.context.arc(player.x, player.y, game.circleRadius_RADIUS, 0, Math.PI*2);
 		game.shadowTexture.context.fill();
 		game.shadowTexture.dirty             = true;
 	},
 
 	render: function(){
 		if(debugMode){
-			//game.debug.bodyInfo(player, 32, 32);
+			game.debug.bodyInfo(player, 32, 32);
 			game.debug.body(player);
 		    asteroids.forEach(	
 		    	function(asteroid){
 		     		game.debug.body(asteroid);
-		     		game.debug.bodyInfo(asteroid, 32, 32);
 		     },
 		     asteroid);
 

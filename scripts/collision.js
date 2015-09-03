@@ -13,7 +13,7 @@ var collide = {
 		score += 50*difficulty;
 		scoreCounter.setText("Score: " + score);
 		ammo += powerup_bonus_ammo;
-		if(light < max_light) light += powerup_bonus_life;
+		if(circleRadius < max_circleRadius) circleRadius += powerup_bonus_life;
 		powerups.forEachExists(powerup.respawn, this);
 	},
 
@@ -21,7 +21,7 @@ var collide = {
 		score += 50*difficulty;
 		scoreCounter.setText("Score: " + score);
 		ammo += powerup_bonus_ammo;
-		if(light < max_light) light += powerup_bonus_life;
+		if(circleRadius < max_circleRadius) circleRadius += powerup_bonus_life;
 		bullet.kill();
 		powerups.forEachExists(powerup.respawn, this);
 	},
