@@ -106,7 +106,7 @@ var difficultyState = {
 		animationSpeedThreshold     = 3 + (difficulty * 1.5);
 		timeBetweenAnimationUpdates = 5000 + (6000 - difficulty * 1000); 
 		turnSpeed                   = 200 +  20 * difficulty;
-		max_pickups                 = 5 - difficulty;
+		max_pickups                 = 6 - difficulty;
 		powerup_bonus_ammo          = 5 - difficulty;
 		powerup_bonus_life          = 300 / difficulty;
 		max_velocity                = (50 * difficulty) + 50;		
@@ -115,7 +115,7 @@ var difficultyState = {
 		ammo                        = 5 - difficulty;
 		max_acceleration            = difficulty + 1;
 		circleDecreaseAmt           = 0.35 + difficulty/40;
-		if (difficulty > 2) circleRadius   = 400;
-		else circleRadius                  = 500 - (100 * difficulty);
+		if (difficulty > 2) circleRadius   = 500;
+		else circleRadius                  = 650 - (100 * difficulty);
 	}
 }

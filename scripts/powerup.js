@@ -4,6 +4,7 @@ powerup = {
 			var xy = this.checkSpawn();
 			var plusPowerup = powerups.create(xy[0], xy[1], 'plus');
 			game.physics.arcade.enable(plusPowerup);
+			plusPowerup.scale.setTo(1.5, 1.5);
 		}		
 	},
 

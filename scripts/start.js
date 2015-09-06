@@ -162,9 +162,9 @@ startState = {
         	bullet = bullets.getFirstExists(false);
 	        if (bullet) {
 				bullet.reset(player.x, player.y);
-				bullet.lifespan = 3000;
+				bullet.lifespan = 4000;
 				bullet.rotation = player.rotation;
-				game.physics.arcade.velocityFromRotation(player.rotation, 400, bullet.body.velocity);
+				game.physics.arcade.velocityFromRotation(player.rotation, 450, bullet.body.velocity);
 				if(!soundMuted) pew.play();
 				bulletTime      = game.time.now + 50;
 				lastBulletTime      = game.time.now + 500;

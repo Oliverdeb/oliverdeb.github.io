@@ -1,10 +1,8 @@
-http://www.emanueleferonato.com/2014/08/28/phaser-tutorial-understanding-phaser-states/
-
-# Scaling of asteroids + more sprite objects
-
-# Remove rendering from destroyed obj in debug mode
-
-# Change rotation speed based on difficulty?
+1) REDO instructions
+2) resolution custom
+3) split asteroids
+4) 2 player?
+5) Scrollings
 
 # Powerups etc speed shield - > new sprite shield image in assets
 
