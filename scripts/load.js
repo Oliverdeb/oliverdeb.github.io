@@ -9,7 +9,7 @@ var preLoadState = {
 		
 		//images
 		game.load.image('plus', 'assets/powerups/health_powerup.png');	
-		game.load.image('background', 'assets/backgroundnew.png');
+		game.load.image('background', 'assets/backgrounds/backgroundnew.png');
 		game.load.image('bullet', 'assets/ship/laser.png');		
 		game.load.image('title', 'assets/buttons/title.png');
 		game.load.image('howto', 'assets/title/howto.png');
